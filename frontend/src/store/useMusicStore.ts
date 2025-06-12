@@ -5,8 +5,8 @@ import toast from "react-hot-toast";
 
 
 interface MusicStore {
-  albums: Song[];
-  songs: Album[];
+  albums: Album[];
+  songs: Song[];
   allSongs:Song[];
   isLoading: boolean;
   error: string | null;
@@ -16,12 +16,12 @@ interface MusicStore {
 	trendingSongs: Song[];
 
   featchAlbums: () => Promise<void>;
-  featchAlbumById: (id: string) => Promise<Album>;
+  featchAlbumById: (id: string) => Promise<void>;
 
   fetchFeaturedSongs: () => Promise<void>;
 	fetchMadeForYouSongs: () => Promise<void>;
 	fetchTrendingSongs: () => Promise<void>;
-	// fetchStats: () => Promise<void>;
+
 	fetchSongs: () => Promise<void>;
 	deleteSong: (id: string) => Promise<void>;
 	deleteAlbum: (id: string) => Promise<void>;
@@ -63,8 +63,11 @@ export const useMusicStore = create<MusicStore>((set) => ({
 			set((state) => ({
 				albums: state.albums.filter((album) => album._id !== id),
 				songs: state.songs.map((song) =>
-					song.albumId === state.albums.find((a) => a._id === id)?.title ? { ...song, album: null } : song
-				),
+          song.albumId === state.albums.find((a) => a._id === id)?.title
+            ? { ...song, album: null }
+            : song
+        ),
+        
 			}));
 			toast.success("Album deleted successfully");
 		} catch (error: any) {
@@ -101,17 +104,22 @@ export const useMusicStore = create<MusicStore>((set) => ({
     }
   },
 
-  featchAlbumById : async(id:string) => {
+  featchAlbumById: async (id: string) => {
     set({ isLoading: true, error: null });
+  
     try {
       const res = await axiosConfig.get(`/album/getalbum/${id}`);
       set({ currentAlbum: res.data.album });
+  
+      return res.data.album; // ✅ Return the Album object
     } catch (error: any) {
       set({ error: error.response.data.message });
+      throw error;
     } finally {
       set({ isLoading: false });
     }
-  },
+  }
+  ,
 
 
   fetchFeaturedSongs: async() => {

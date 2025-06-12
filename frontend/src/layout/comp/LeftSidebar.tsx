@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const LeftSidebar = () => {
-  const { albums, isLoading, error, featchAlbums } = useMusicStore();
+  const { albums, isLoading, featchAlbums } = useMusicStore();
 
   useEffect(() => {
     featchAlbums();

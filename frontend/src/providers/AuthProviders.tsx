@@ -5,7 +5,7 @@ import { Loader } from "lucide-react";
 import { useAuthStore } from "@/store/useAuthStore";
 
 const AuthProviders = ({ children }: { children: React.ReactNode }) => {
-  const { getToken, userId } = useAuth();
+  const { getToken } = useAuth();
   const [loading, setLoading] = useState(true);
   const { checkAdminStatus } = useAuthStore();
 

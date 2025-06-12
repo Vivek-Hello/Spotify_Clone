@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 
 const PlaybackController = () => {
-  const { currentSong, isPlaying, togglePlay, playNext, playPrevious } = usePlayerStore();
+  const {  isPlaying, togglePlay, playNext, playPrevious } = usePlayerStore();
   const [volume, setVolume] = useState(1);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);

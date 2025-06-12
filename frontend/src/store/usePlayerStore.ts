@@ -29,7 +29,8 @@ export const usePlayerStore = create<PlayerStore>((set,get)=>({
             currentIndex: get().currentIndex === -1 ? 0 : get().currentIndex,
         })
     },
-    playAlbum:(songs:Song[],startIndex:0)=>{
+    playAlbum:(songs:Song[],startIndex:number)=>{
+        startIndex = 0;
         if (songs.length ===0) {
             return;
         }

@@ -1,3 +1,4 @@
+import type { Song } from "@/types";
 import PlayButton from "./PlayButton";
 import SectionGridSkeleton from "./SectionGridSkeleton";
 

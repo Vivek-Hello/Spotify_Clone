@@ -1,5 +1,5 @@
 import { useMusicStore } from "@/store/useMusicStore";
-import { Trash2, SquarePlus, Music } from "lucide-react";
+import { Trash2,  Music } from "lucide-react";
 import AddSongDialog from "./AddSongDialog";
 
 const SongsTable = () => {
@@ -23,15 +23,8 @@ const SongsTable = () => {
           <span>All Songs</span>
         </div>
 
-        <AddSongDialog>
-          <button
-            className="bg-green-400 px-4 py-2 rounded-lg flex items-center gap-2 text-black hover:bg-green-300 transition"
-            aria-label="Add new song"
-          >
-            <SquarePlus className="size-4" />
-            <span>Add Song</span>
-          </button>
-        </AddSongDialog>
+        <AddSongDialog />
+         
       </div>
 
       {/* Table Header */}

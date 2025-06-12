@@ -1,18 +1,12 @@
 import { useMusicStore } from "@/store/useMusicStore";
-import { Trash2, LibraryBig, SquarePlus } from "lucide-react";
+import { Trash2, LibraryBig,  } from "lucide-react";
 import AddAlbumDialog from "./AddAlbumDialog";
+import type { Album } from "@/types";
 
 const AlbumsTable = () => {
   const { albums, deleteAlbum } = useMusicStore();
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString(undefined, {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  };
+  
 
   return (
     <div className="bg-zinc-900 p-6 rounded-lg shadow-lg">
@@ -23,15 +17,9 @@ const AlbumsTable = () => {
           <span>All Albums</span>
         </div>
 
-        <AddAlbumDialog>
-          <button
-            className="bg-green-400 px-4 py-2 rounded-lg flex items-center gap-2 text-black hover:bg-green-300 transition"
-            aria-label="Add new album"
-          >
-            <SquarePlus className="size-4" />
-            <span>Add Album</span>
-          </button>
-        </AddAlbumDialog>
+
+        <AddAlbumDialog />
+
       </div>
 
       {/* Table Head */}
@@ -43,7 +31,7 @@ const AlbumsTable = () => {
 
       {/* Table Body */}
       <div className="flex flex-col gap-4">
-        {albums.map((album) => (
+        {albums.map((album:Album) => (
           <div
             key={album?._id}
             className="grid grid-cols-3 items-center gap-4 bg-zinc-800 p-3 rounded-md hover:bg-zinc-700 transition"
@@ -59,7 +47,7 @@ const AlbumsTable = () => {
             </div>
 
             {/* Release Date */}
-            <div className="text-gray-400">{formatDate(album.createdAt)}</div>
+            
 
             {/* Delete Button */}
             <div className="text-right">

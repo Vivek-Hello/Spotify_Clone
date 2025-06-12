@@ -22,7 +22,7 @@ const App = () => {
   // },[isSignedIn,checkAdminStatus]);
   return ( 
     <div>
-      <Toaster position="center"/>
+      <Toaster position="top-center" />
       <Routes>
         <Route
           path="sso-callback"
